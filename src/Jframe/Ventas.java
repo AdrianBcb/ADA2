@@ -186,6 +186,10 @@ public class Ventas extends JFrame {
 		contentPane.add(comboBox_destino_1_2_1);
 		
 		JButton btn_reservar_1 = new JButton("_____");
+		btn_reservar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btn_reservar_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btn_reservar_1.setBounds(332, 413, 170, 29);
 		contentPane.add(btn_reservar_1);
