@@ -4,6 +4,7 @@ public class ciudades {
 String nombres;
 boolean disponibilidad;
 
+
 public ciudades(String nombres, boolean disponibilidad) {
 	super();
 	this.nombres = nombres;

@@ -9,6 +9,7 @@ int asientos_turista;
 
 
 
+
 public aerolineas(String nombre, int costo_primeraclase, int costo_mm, int asientos_primeraclase,
 		int asientos_turista) {
 	this.nombre = nombre;
