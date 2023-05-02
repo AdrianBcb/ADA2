@@ -84,7 +84,7 @@ public class Ventas extends JFrame {
 		btn_reservar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btn_reservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+			 
 			}
 		});
 		btn_reservar.setBounds(98, 413, 170, 29);

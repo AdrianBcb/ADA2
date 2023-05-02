@@ -4,6 +4,9 @@ public class registro_vuelos {
 	String Aerolinea;
 	String Fecha;
 	int Costo;
+	int hora;
+	String Destino;
+	
 	
 	
 
