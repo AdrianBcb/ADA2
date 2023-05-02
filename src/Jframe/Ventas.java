@@ -24,8 +24,8 @@ public class Ventas extends JFrame {
 
 	private aerolineas aerolineas;
 	aerolineas [] avioncitosAerolineas = new aerolineas[] {
-		aerolineas = new aerolineas("AeroMéxico", 1500, 750, 60, 150),
-		aerolineas = new aerolineas("Turismax", 1000, 500, 50, 100)	
+		aerolineas = new aerolineas("AeroMéxico",1500, 750, 60, 150, "10/05/2023","16:00pm"),
+		aerolineas = new aerolineas("Turismax", 1000, 500, 50, 100, "15/06/2023", "15:00pm")	
 
 	};
 	
@@ -82,6 +82,11 @@ public class Ventas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JComboBox comboPrimera = new JComboBox();
+		JComboBox comboTurista = new JComboBox();
+
+		
+		
 		JButton btn_reservar = new JButton("Reservar vuelo");
 		btn_reservar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btn_reservar.addActionListener(new ActionListener() {
@@ -126,6 +131,25 @@ public class Ventas extends JFrame {
 		contentPane.add(comboBox_origen);
 		
 		JComboBox comboAerolinea = new JComboBox();
+		comboAerolinea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("yesai te quiere mucho");
+				comboPrimera.removeAllItems();
+				comboTurista.removeAllItems();
+				//System.out.println(comboAerolinea.getSelectedItem());
+				
+				
+				 for(int i=0; i< avioncitosAerolineas.length;i++){	    
+				    	if (avioncitosAerolineas[i].getNombre().equals(comboAerolinea.getSelectedItem())) {
+				    		comboPrimera.addItem(avioncitosAerolineas[i].getCosto_primeraclase());
+				    		comboTurista.addItem(avioncitosAerolineas[i].getCosto_mm());
+				    		
+				    
+				    	}
+				   };
+	
+			}
+		});
 		comboAerolinea.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboAerolinea.setBounds(142, 143, 237, 29);
 		   for(int i=0; i< avioncitosAerolineas.length;i++){	    
@@ -175,14 +199,20 @@ public class Ventas extends JFrame {
 		lblNewLabel_1_1_3.setBounds(32, 296, 90, 29);
 		contentPane.add(lblNewLabel_1_1_3);
 		
-		JComboBox comboPrimera = new JComboBox();
 		comboPrimera.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboPrimera.setBounds(403, 211, 55, 29);
+		comboPrimera.setBounds(403, 211, 99, 29);
+		   for(int i=0; i< avioncitosAerolineas.length;i++){	    
+		    	comboPrimera.addItem(avioncitosAerolineas[i].getCosto_primeraclase());
+
+		    };
 		contentPane.add(comboPrimera);
 		
-		JComboBox comboTurista = new JComboBox();
 		comboTurista.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboTurista.setBounds(403, 246, 55, 29);
+		comboTurista.setBounds(403, 246, 99, 29);
+		   for(int i=0; i< avioncitosAerolineas.length;i++){	    
+		    	comboTurista.addItem(avioncitosAerolineas[i].getCosto_mm());
+
+		    };
 		contentPane.add(comboTurista);
 		
 		JLabel lblNewLabel_1_1_3_1 = new JLabel("Horario");
@@ -194,11 +224,17 @@ public class Ventas extends JFrame {
 		JComboBox comboFecha = new JComboBox();
 		comboFecha.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboFecha.setBounds(142, 285, 186, 29);
+		 for(int i=0; i< avioncitosAerolineas.length;i++){	    
+		    	comboFecha.addItem(avioncitosAerolineas[i].getFecha());
+		   };
 		contentPane.add(comboFecha);
 		
 		JComboBox comboHorario = new JComboBox();
 		comboHorario.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboHorario.setBounds(142, 335, 157, 29);
+		 for(int i=0; i< avioncitosAerolineas.length;i++){	    
+		    	comboHorario.addItem(avioncitosAerolineas[i].getHora());
+		   };
 		contentPane.add(comboHorario);
 		
 		JButton btn_reservar_1 = new JButton("_____");
