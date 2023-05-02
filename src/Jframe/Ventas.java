@@ -10,6 +10,7 @@ import clases.aerolineas;
 import clases.ciudades;
 import clases.personas;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,15 +31,14 @@ public class Ventas extends JFrame {
 	
 	private ciudades ciudades;
 	ciudades[] destino = new ciudades[] {
-		ciudades = new ciudades("", true),
 		ciudades = new ciudades("DCMX", true),
-		ciudades = new ciudades("Merida", true),
-		ciudades = new ciudades("Merida", true),
-		ciudades = new ciudades("Merida", true),
-		ciudades = new ciudades("Merida", true)	,
-		ciudades = new ciudades("Merida", true)	,
-		ciudades = new ciudades("Merida", true)	,
-		ciudades = new ciudades("Merida", true)	
+		ciudades = new ciudades("Puebla", true),
+		ciudades = new ciudades("Nuevo León", true),
+		ciudades = new ciudades("Guanajuato", true),
+		ciudades = new ciudades("Ecatepec", true)	,
+		ciudades = new ciudades("Quintana Roo", true)	,
+		ciudades = new ciudades("Cancun", true)	,
+		ciudades = new ciudades("Villa hermosa", true)	
 		
 	};
 	ciudades[] origen = new ciudades[] {
@@ -49,6 +49,8 @@ public class Ventas extends JFrame {
 	};
 	private JPanel contentPane;
 	public personas p = new personas();
+	
+	private DefaultComboBoxModel  modelo = new DefaultComboBoxModel();
 
 	/**
 	 * Launch the application.
@@ -93,6 +95,14 @@ public class Ventas extends JFrame {
 		JComboBox comboBox_destino = new JComboBox();
 		comboBox_destino.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_destino.setBounds(142, 87, 237, 29);
+		//////////////////////////////////////////////////////////////
+	//haciendo esta cosa
+	    for(int i=0; i< destino.length;i++){	    
+	    	comboBox_destino.addItem(destino[i].getNombres());
+
+	    };
+		//comboBox_destino.addItem("");
+		
 		contentPane.add(comboBox_destino);
 		
 		JLabel lblNewLabel = new JLabel("Origen");
@@ -110,12 +120,18 @@ public class Ventas extends JFrame {
 		JComboBox comboBox_origen = new JComboBox();
 		comboBox_origen.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_origen.setBounds(142, 37, 237, 29);
+		   for(int i=0; i< origen.length;i++){	    
+		    	comboBox_origen.addItem(origen[i].getNombres());
+		   };
 		contentPane.add(comboBox_origen);
 		
-		JComboBox comboBox_destino_1 = new JComboBox();
-		comboBox_destino_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_destino_1.setBounds(142, 143, 237, 29);
-		contentPane.add(comboBox_destino_1);
+		JComboBox comboAerolinea = new JComboBox();
+		comboAerolinea.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboAerolinea.setBounds(142, 143, 237, 29);
+		   for(int i=0; i< avioncitosAerolineas.length;i++){	    
+		    	comboAerolinea.addItem(avioncitosAerolineas[i].getNombre());
+		   };
+		contentPane.add(comboAerolinea);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Aerolinea");
 		lblNewLabel_1_1.setForeground(Color.WHITE);
@@ -159,15 +175,15 @@ public class Ventas extends JFrame {
 		lblNewLabel_1_1_3.setBounds(32, 296, 90, 29);
 		contentPane.add(lblNewLabel_1_1_3);
 		
-		JComboBox comboBox_destino_1_1 = new JComboBox();
-		comboBox_destino_1_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_destino_1_1.setBounds(403, 211, 55, 29);
-		contentPane.add(comboBox_destino_1_1);
+		JComboBox comboPrimera = new JComboBox();
+		comboPrimera.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboPrimera.setBounds(403, 211, 55, 29);
+		contentPane.add(comboPrimera);
 		
-		JComboBox comboBox_destino_1_1_1 = new JComboBox();
-		comboBox_destino_1_1_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_destino_1_1_1.setBounds(403, 246, 55, 29);
-		contentPane.add(comboBox_destino_1_1_1);
+		JComboBox comboTurista = new JComboBox();
+		comboTurista.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboTurista.setBounds(403, 246, 55, 29);
+		contentPane.add(comboTurista);
 		
 		JLabel lblNewLabel_1_1_3_1 = new JLabel("Horario");
 		lblNewLabel_1_1_3_1.setForeground(Color.WHITE);
@@ -175,15 +191,15 @@ public class Ventas extends JFrame {
 		lblNewLabel_1_1_3_1.setBounds(32, 335, 90, 29);
 		contentPane.add(lblNewLabel_1_1_3_1);
 		
-		JComboBox comboBox_destino_1_2 = new JComboBox();
-		comboBox_destino_1_2.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_destino_1_2.setBounds(142, 285, 186, 29);
-		contentPane.add(comboBox_destino_1_2);
+		JComboBox comboFecha = new JComboBox();
+		comboFecha.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboFecha.setBounds(142, 285, 186, 29);
+		contentPane.add(comboFecha);
 		
-		JComboBox comboBox_destino_1_2_1 = new JComboBox();
-		comboBox_destino_1_2_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_destino_1_2_1.setBounds(142, 335, 157, 29);
-		contentPane.add(comboBox_destino_1_2_1);
+		JComboBox comboHorario = new JComboBox();
+		comboHorario.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboHorario.setBounds(142, 335, 157, 29);
+		contentPane.add(comboHorario);
 		
 		JButton btn_reservar_1 = new JButton("_____");
 		btn_reservar_1.addActionListener(new ActionListener() {
