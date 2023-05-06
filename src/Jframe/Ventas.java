@@ -13,12 +13,17 @@ import clases.personas;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Color;
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 public class Ventas extends JFrame {
 	//private aerolineas aerolineas;
 
@@ -87,15 +92,6 @@ public class Ventas extends JFrame {
 
 		
 		
-		JButton btn_reservar = new JButton("Reservar vuelo");
-		btn_reservar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btn_reservar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			 
-			}
-		});
-		btn_reservar.setBounds(98, 413, 170, 29);
-		contentPane.add(btn_reservar);
 		
 		JComboBox comboBox_destino = new JComboBox();
 		comboBox_destino.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -110,17 +106,17 @@ public class Ventas extends JFrame {
 		
 		contentPane.add(comboBox_destino);
 		
-		JLabel lblNewLabel = new JLabel("Origen");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel.setBounds(32, 37, 85, 29);
-		contentPane.add(lblNewLabel);
+		JLabel lblOrigen = new JLabel("Origen");
+		lblOrigen.setForeground(new Color(255, 255, 255));
+		lblOrigen.setFont(new Font("Arial", Font.BOLD, 14));
+		lblOrigen.setBounds(32, 37, 85, 29);
+		contentPane.add(lblOrigen);
 		
-		JLabel lblNewLabel_1 = new JLabel("Destino");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(32, 87, 90, 29);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblDestino = new JLabel("Destino");
+		lblDestino.setForeground(new Color(255, 255, 255));
+		lblDestino.setFont(new Font("Arial", Font.BOLD, 14));
+		lblDestino.setBounds(32, 87, 90, 29);
+		contentPane.add(lblDestino);
 		
 		JComboBox comboBox_origen = new JComboBox();
 		comboBox_origen.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -157,11 +153,11 @@ public class Ventas extends JFrame {
 		   };
 		contentPane.add(comboAerolinea);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Aerolinea");
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_1_1.setBounds(32, 143, 90, 29);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel lblAerolinea = new JLabel("Aerolinea");
+		lblAerolinea.setForeground(Color.WHITE);
+		lblAerolinea.setFont(new Font("Arial", Font.BOLD, 14));
+		lblAerolinea.setBounds(32, 143, 90, 29);
+		contentPane.add(lblAerolinea);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Costos:");
 		lblNewLabel_1_1_1.setForeground(Color.WHITE);
@@ -169,11 +165,11 @@ public class Ventas extends JFrame {
 		lblNewLabel_1_1_1.setBounds(68, 202, 90, 29);
 		contentPane.add(lblNewLabel_1_1_1);
 		
-		JLabel lblNewLabel_1_1_2 = new JLabel("Primera Clase");
-		lblNewLabel_1_1_2.setForeground(Color.WHITE);
-		lblNewLabel_1_1_2.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_1_1_2.setBounds(212, 211, 110, 29);
-		contentPane.add(lblNewLabel_1_1_2);
+		JLabel lblPrimera = new JLabel("Primera Clase");
+		lblPrimera.setForeground(Color.WHITE);
+		lblPrimera.setFont(new Font("Arial", Font.BOLD, 14));
+		lblPrimera.setBounds(212, 211, 110, 29);
+		contentPane.add(lblPrimera);
 		
 		JLabel precio_primeraclase = new JLabel("**");
 		precio_primeraclase.setForeground(Color.WHITE);
@@ -181,11 +177,11 @@ public class Ventas extends JFrame {
 		precio_primeraclase.setBounds(332, 211, 61, 29);
 		contentPane.add(precio_primeraclase);
 		
-		JLabel lblNewLabel_1_1_2_2 = new JLabel("Turista");
-		lblNewLabel_1_1_2_2.setForeground(Color.WHITE);
-		lblNewLabel_1_1_2_2.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_1_1_2_2.setBounds(212, 246, 90, 29);
-		contentPane.add(lblNewLabel_1_1_2_2);
+		JLabel lblTurista = new JLabel("Turista");
+		lblTurista.setForeground(Color.WHITE);
+		lblTurista.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTurista.setBounds(212, 246, 90, 29);
+		contentPane.add(lblTurista);
 		
 		JLabel precio_turista = new JLabel("**");
 		precio_turista.setForeground(Color.WHITE);
@@ -193,11 +189,11 @@ public class Ventas extends JFrame {
 		precio_turista.setBounds(332, 246, 61, 29);
 		contentPane.add(precio_turista);
 		
-		JLabel lblNewLabel_1_1_3 = new JLabel("Fecha");
-		lblNewLabel_1_1_3.setForeground(Color.WHITE);
-		lblNewLabel_1_1_3.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_1_1_3.setBounds(32, 296, 90, 29);
-		contentPane.add(lblNewLabel_1_1_3);
+		JLabel lblFecha = new JLabel("Fecha");
+		lblFecha.setForeground(Color.WHITE);
+		lblFecha.setFont(new Font("Arial", Font.BOLD, 14));
+		lblFecha.setBounds(32, 296, 90, 29);
+		contentPane.add(lblFecha);
 		
 		comboPrimera.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboPrimera.setBounds(403, 211, 99, 29);
@@ -215,11 +211,11 @@ public class Ventas extends JFrame {
 		    };
 		contentPane.add(comboTurista);
 		
-		JLabel lblNewLabel_1_1_3_1 = new JLabel("Horario");
-		lblNewLabel_1_1_3_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1_3_1.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_1_1_3_1.setBounds(32, 335, 90, 29);
-		contentPane.add(lblNewLabel_1_1_3_1);
+		JLabel lblHorario = new JLabel("Horario");
+		lblHorario.setForeground(Color.WHITE);
+		lblHorario.setFont(new Font("Arial", Font.BOLD, 14));
+		lblHorario.setBounds(32, 335, 90, 29);
+		contentPane.add(lblHorario);
 		
 		JComboBox comboFecha = new JComboBox();
 		comboFecha.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -245,5 +241,33 @@ public class Ventas extends JFrame {
 		btn_reservar_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btn_reservar_1.setBounds(332, 413, 170, 29);
 		contentPane.add(btn_reservar_1);
+
+		JButton btn_reservar = new JButton("Reservar vuelo");
+		btn_reservar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btn_reservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String texto = lblDestino.getText()   + ": " +  (String) comboBox_destino.getSelectedItem()
+				+ comboBox_origen.getSelectedItem(); 
+						
+		        try {
+		            FileWriter archivo = new FileWriter("archivo.txt");
+		            BufferedWriter buffer = new BufferedWriter(archivo);
+		            buffer.write(texto);
+		            buffer.close();
+		            System.out.println("El archivo se ha guardado correctamente.");
+		        } catch (IOException a) {
+		            System.out.println("Ha ocurrido un error al guardar el archivo.");
+		            a.printStackTrace();
+		
+		        } 
+	
+				
+				
+			};
+			
+		});
+		btn_reservar.setBounds(98, 413, 170, 29);
+		contentPane.add(btn_reservar);
 	}
 }
