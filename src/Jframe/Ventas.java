@@ -248,10 +248,20 @@ public class Ventas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String texto = lblDestino.getText()   + ": " +  (String) comboBox_destino.getSelectedItem()
-				+ comboBox_origen.getSelectedItem(); 
-						
+				+ "\n" + lblOrigen.getText() + ": " + comboBox_origen.getSelectedItem()
+				+ "\n" + lblAerolinea.getText() + ": " + comboAerolinea.getSelectedItem()
+				+ "\n" + lblPrimera.getText() + ": " + comboPrimera.getSelectedItem()
+				+ "\n" + lblTurista.getText() + ": " + comboTurista.getSelectedItem()
+				+ "\n" + lblFecha.getText() + ": " + comboFecha.getSelectedItem()
+				+ "\n" + lblHorario.getText() + ": " + comboHorario.getSelectedItem();
+;
+		
+				
+
+				
+				
 		        try {
-		            FileWriter archivo = new FileWriter("archivo.txt");
+		            FileWriter archivo = new FileWriter("Boleto.txt");
 		            BufferedWriter buffer = new BufferedWriter(archivo);
 		            buffer.write(texto);
 		            buffer.close();
