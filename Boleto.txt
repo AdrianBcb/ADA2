@@ -1,0 +1,6 @@
+Destino: DCMX
+Origen: Cancún
+Aerolinea: AeroMéxico
+Primera Clase: 1500
+Turista: 750
+Turista: 750
