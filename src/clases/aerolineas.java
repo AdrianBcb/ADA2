@@ -64,6 +64,10 @@ public String getHora() {
 public void sethora(String hora) {
 	this.hora = hora;
 }
+@Override
+public String toString() {
+	return nombre;
+}
 
 
 }

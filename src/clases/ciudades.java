@@ -22,5 +22,7 @@ public void setNombres(String nombres) {
 public void setDisponibilidad(boolean disponibilidad) {
 	this.disponibilidad = disponibilidad;
 }
-
+public String toString() {
+	return nombres;
+}
 }
