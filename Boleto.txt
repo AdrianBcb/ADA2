@@ -1,7 +1,39 @@
-Destino: Seleccione
+Nombre: lirio
+Destino: Nuevo León
 Origen: Mérida
 Aerolinea: AeroMéxico
-Primera Clase: 1500
-Turista: 750
+Primera Clase: 0
+Turista: 0
 Fecha: 10/05/2023
 Horario: 16:00pm
+Total pagado: 0
+
+Nombre: alguien
+Destino: Puebla
+Origen: Mérida
+Aerolinea: Turismax
+Primera Clase: 0
+Turista: 0
+Fecha: 10/05/2023
+Horario: 16:00pm
+Total pagado: 0
+
+Nombre: xilary
+Destino: Guanajuato
+Origen: Mérida
+Aerolinea: AeroMéxico
+Primera Clase: 0
+Turista: 0
+Fecha: 10/05/2023
+Horario: 16:00pm
+Total pagado: 0
+
+Nombre: adriano
+Destino: Nuevo León
+Origen: Mérida
+Aerolinea: AeroMéxico
+Primera Clase: 0
+Turista: 0
+Fecha: 10/05/2023
+Horario: 16:00pm
+Total pagado: 0

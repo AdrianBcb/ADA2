@@ -8,14 +8,13 @@ import javax.swing.border.EmptyBorder;
 
 import clases.aerolineas;
 import clases.ciudades;
-import clases.personas;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.Font;
@@ -23,18 +22,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Color;
-import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import javax.swing.JTextField;
+
 public class Ventas extends JFrame {
 	//private aerolineas aerolineas;
-
 	private aerolineas aerolineas;
 	aerolineas [] avioncitosAerolineas = new aerolineas[] {
 		aerolineas = new aerolineas("AeroMéxico",1500, 750, 60, 150, "10/05/2023","16:00pm"),
 		aerolineas = new aerolineas("Turismax", 1000, 500, 50, 100, "15/06/2023", "15:00pm")	
-
+		
 	};
 	String[] opciones = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 	private ciudades ciudades;
@@ -148,7 +145,8 @@ public class Ventas extends JFrame {
 		lblAerolinea.setFont(new Font("Arial", Font.BOLD, 14));
 		lblAerolinea.setBounds(35, 192, 90, 29);
 		contentPane.add(lblAerolinea);
-		
+		JLabel lblNombre = new JLabel("Nombre");
+
 		JLabel lblNewLabel_1_1_1 = new JLabel("Costos:");
 		lblNewLabel_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1_1.setFont(new Font("Arial", Font.BOLD, 14));
@@ -198,6 +196,7 @@ public class Ventas extends JFrame {
 
 		    };
 		contentPane.add(comboTurista);
+		
 		//_-------------------------------------------------------------------------
 		JLabel lblHorario = new JLabel("Horario");
 		lblHorario.setForeground(Color.WHITE);
@@ -221,38 +220,67 @@ public class Ventas extends JFrame {
 		   };
 		contentPane.add(comboHorario);
 		
-		JButton btn_reservar_1 = new JButton("Consultar disponibilidad");
-		btn_reservar_1.addActionListener(new ActionListener() {
+		JButton btn_buscar = new JButton("Buscar por nombre");
+		btn_buscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
+				//EStebotonestabueno
+				try {
+					File file = new File("boleto.txt");
+				   Scanner scanner = new Scanner(file);					
+			        String buscando = JOptionPane.showInputDialog("Ingresa el nombre del comprador");
+				    boolean found = false;
+				    while (scanner.hasNextLine()) {
+				    String line = scanner.nextLine();
+				    if (line.contains(buscando)) {
+				          found = true;
+				          String textoiimp =line +"\n"+scanner.nextLine()+"\n"+scanner.nextLine()+"\n"+scanner.nextLine()+"\n"
+				        		  +scanner.nextLine()+"\n"+scanner.nextLine()+"\n"+scanner.nextLine()+"\n"
+				        		  +scanner.nextLine()+"\n"+scanner.nextLine()+"\n";
+				          JOptionPane.showMessageDialog(btn_buscar, textoiimp);
+				                }
+				            }
+				            if (!found) {
+				            	JOptionPane.showMessageDialog(btn_buscar,"El nombre *" + buscando + "* no fue encontrado en el archivo.");
+				            }
+				            scanner.close();
+				        } catch (FileNotFoundException o) {
+				            System.out.println("Archivo no encontrado: " + o.getMessage());
+				        }
+				    }
 		});
-		btn_reservar_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btn_reservar_1.setBounds(314, 429, 230, 29);
-		contentPane.add(btn_reservar_1);
+		btn_buscar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btn_buscar.setBounds(314, 429, 230, 29);
+		contentPane.add(btn_buscar);
 
 		JButton btn_reservar = new JButton("Reservar vuelo");
 		btn_reservar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btn_reservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboBox_destino.getSelectedItem().equals("Seleccione")) {
+				if(comboBox_destino.getSelectedItem().toString().equals("Seleccione")) {
 					JOptionPane.showMessageDialog(btn_reservar, "Selecciona un destino");
 		    	}else {
-		    		String texto = lblDestino.getText()   + ": " +  (String) comboBox_destino.getSelectedItem()
-				+ "\n" + lblOrigen.getText() + ": " + comboBox_origen.getSelectedItem()
+		    		int total = (Integer.parseInt(precio_primeraclase.getText())*Integer.parseInt(comboPrimera.getSelectedItem().toString()) )
+							+(Integer.parseInt(precio_turista.getText())*Integer.parseInt((comboTurista.getSelectedItem().toString())) );
+		    	String textoescribir = 
+		    			 lblNombre.getText()    + ": "+  textField.getText()   
+		    	+ "\n"+ lblDestino.getText()    + ": "+ comboBox_destino.getSelectedItem()
+				+ "\n" + lblOrigen.getText()    + ": " + comboBox_origen.getSelectedItem()
 				+ "\n" + lblAerolinea.getText() + ": " + comboAerolinea.getSelectedItem()
-				+ "\n" + lblPrimera.getText() + ": " + comboPrimera.getSelectedItem()
-				+ "\n" + lblTurista.getText() + ": " + comboTurista.getSelectedItem()
-				+ "\n" + lblFecha.getText() + ": " + comboFecha.getSelectedItem()
-				+ "\n" + lblHorario.getText() + ": " + comboHorario.getSelectedItem();
+				+ "\n" + lblPrimera.getText()   + ": " + comboPrimera.getSelectedItem()
+				+ "\n" + lblTurista.getText()   + ": " + comboTurista.getSelectedItem()
+				+ "\n" + lblFecha.getText()     + ": " + comboFecha.getSelectedItem()
+				+ "\n" + lblHorario.getText()   + ": " + comboHorario.getSelectedItem()
+				+ "\n" + "Total pagado"         + ": " + total;
 				 try {
-		            FileWriter archivo = new FileWriter("Boleto.txt");
-		            BufferedWriter buffer = new BufferedWriter(archivo);
-		            //BufferReader reader = new 
-		            buffer.write(texto);
-		            buffer.close();
+		             
+		            FileWriter archivo = new FileWriter("Boleto.txt",true);
+		         //   BufferedReader reader = new BufferedReader(new FileReader("archivo"));
+		           // BufferedWriter buffer = new BufferedWriter(archivo);
+		            archivo.write("\n");
+		            archivo.write(textoescribir);
+		            archivo.write("\n");
+		            archivo.close();
 		        	JOptionPane.showMessageDialog(btn_reservar, "El vuelo ha sido reservado");
-
-		          ///  System.out.println("El archivo se ha guardado correctamente.");
 		        } catch (IOException a) {
 		        	JOptionPane.showMessageDialog(btn_reservar, "Ha ocurrido un error al guardar el archivo");
 		            ///System.out.println("Ha ocurrido un error al guardar el archivo.");
@@ -267,7 +295,6 @@ public class Ventas extends JFrame {
 		btn_reservar.setBounds(80, 429, 170, 29);
 		contentPane.add(btn_reservar);
 		
-		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNombre.setBounds(35, 31, 85, 29);
