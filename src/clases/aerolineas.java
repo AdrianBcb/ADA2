@@ -37,15 +37,8 @@ public int getAsientos_primeraclase() {
 public int getAsientos_turista() {
 	return asientos_turista;
 }
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
-public void setCosto_primeraclase(int costo_primeraclase) {
-	this.costo_primeraclase = costo_primeraclase;
-}
-public void setCosto_mm(int costo_mm) {
-	this.costo_mm = costo_mm;
-}
+
+
 public void setAsientos_primeraclase(int asientos_primeraclase) {
 	this.asientos_primeraclase = asientos_primeraclase;
 }

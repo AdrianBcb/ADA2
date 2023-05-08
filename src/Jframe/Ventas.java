@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 
 import clases.aerolineas;
 import clases.ciudades;
+import clases.manejoarchivo;
+import clases.registro_vuelos;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,6 +29,9 @@ import java.io.FileWriter;
 import javax.swing.JTextField;
 
 public class Ventas extends JFrame {
+	manejoarchivo ma = new manejoarchivo();
+
+	
 	//private aerolineas aerolineas;
 	private aerolineas aerolineas;
 	aerolineas [] avioncitosAerolineas = new aerolineas[] {
@@ -224,28 +230,7 @@ public class Ventas extends JFrame {
 		btn_buscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//EStebotonestabueno
-				try {
-					File file = new File("boleto.txt");
-				   Scanner scanner = new Scanner(file);					
-			        String buscando = JOptionPane.showInputDialog("Ingresa el nombre del comprador");
-				    boolean found = false;
-				    while (scanner.hasNextLine()) {
-				    String line = scanner.nextLine();
-				    if (line.contains(buscando)) {
-				          found = true;
-				          String textoiimp =line +"\n"+scanner.nextLine()+"\n"+scanner.nextLine()+"\n"+scanner.nextLine()+"\n"
-				        		  +scanner.nextLine()+"\n"+scanner.nextLine()+"\n"+scanner.nextLine()+"\n"
-				        		  +scanner.nextLine()+"\n"+scanner.nextLine()+"\n";
-				          JOptionPane.showMessageDialog(btn_buscar, textoiimp);
-				                }
-				            }
-				            if (!found) {
-				            	JOptionPane.showMessageDialog(btn_buscar,"El nombre *" + buscando + "* no fue encontrado en el archivo.");
-				            }
-				            scanner.close();
-				        } catch (FileNotFoundException o) {
-				            System.out.println("Archivo no encontrado: " + o.getMessage());
-				        }
+				ma.leer();
 				    }
 		});
 		btn_buscar.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -261,32 +246,22 @@ public class Ventas extends JFrame {
 		    	}else {
 		    		int total = (Integer.parseInt(precio_primeraclase.getText())*Integer.parseInt(comboPrimera.getSelectedItem().toString()) )
 							+(Integer.parseInt(precio_turista.getText())*Integer.parseInt((comboTurista.getSelectedItem().toString())) );
-		    	String textoescribir = 
-		    			 lblNombre.getText()    + ": "+  textField.getText()   
-		    	+ "\n"+ lblDestino.getText()    + ": "+ comboBox_destino.getSelectedItem()
-				+ "\n" + lblOrigen.getText()    + ": " + comboBox_origen.getSelectedItem()
-				+ "\n" + lblAerolinea.getText() + ": " + comboAerolinea.getSelectedItem()
-				+ "\n" + lblPrimera.getText()   + ": " + comboPrimera.getSelectedItem()
-				+ "\n" + lblTurista.getText()   + ": " + comboTurista.getSelectedItem()
-				+ "\n" + lblFecha.getText()     + ": " + comboFecha.getSelectedItem()
-				+ "\n" + lblHorario.getText()   + ": " + comboHorario.getSelectedItem()
-				+ "\n" + "Total pagado"         + ": " + total;
-				 try {
-		             
-		            FileWriter archivo = new FileWriter("Boleto.txt",true);
-		         //   BufferedReader reader = new BufferedReader(new FileReader("archivo"));
-		           // BufferedWriter buffer = new BufferedWriter(archivo);
-		            archivo.write("\n");
-		            archivo.write(textoescribir);
-		            archivo.write("\n");
-		            archivo.close();
-		        	JOptionPane.showMessageDialog(btn_reservar, "El vuelo ha sido reservado");
-		        } catch (IOException a) {
-		        	JOptionPane.showMessageDialog(btn_reservar, "Ha ocurrido un error al guardar el archivo");
-		            ///System.out.println("Ha ocurrido un error al guardar el archivo.");
-		            a.printStackTrace();
-		        		} 	
-
+		    	
+		    		registro_vuelos registrar = new registro_vuelos(textField.getText(),comboAerolinea.getSelectedItem().toString(), comboBox_destino.getSelectedItem().toString(), 
+		    			comboBox_origen.getSelectedItem().toString(),comboFecha.getSelectedItem().toString(),comboHorario.getSelectedItem().toString(),comboPrimera.getSelectedItem().toString(),
+		    			comboTurista.getSelectedItem().toString() , total);
+		    		
+		    		String textoescribir = 
+		    			 lblNombre.getText()    + ": "+  registrar.getNombre() 
+		    	+ "\n"+ lblDestino.getText()    + ": "+  registrar.getDestino()
+				+ "\n" + lblOrigen.getText()    + ": " + registrar.getOrigen()
+				+ "\n" + lblAerolinea.getText() + ": " + registrar.getAerolinea()
+				+ "\n" + lblPrimera.getText()   + ": " + registrar.getCantp()
+				+ "\n" + lblTurista.getText()   + ": " + registrar.getCantt()
+				+ "\n" + lblFecha.getText()     + ": " + registrar.getFecha()
+				+ "\n" + lblHorario.getText()   + ": " + registrar.getHora()
+				+ "\n" + "Total pagado"         + ": " + registrar.getCosto();
+		    		ma.escribir(textoescribir);
 		    	}
 				
 			};

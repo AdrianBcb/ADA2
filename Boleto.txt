@@ -37,3 +37,13 @@ Turista: 0
 Fecha: 10/05/2023
 Horario: 16:00pm
 Total pagado: 0
+
+Nombre: berenice
+Destino: Guanajuato
+Origen: Mérida
+Aerolinea: AeroMéxico
+Primera Clase: 1
+Turista: 1
+Fecha: 10/05/2023
+Horario: 16:00pm
+Total pagado: 2250
